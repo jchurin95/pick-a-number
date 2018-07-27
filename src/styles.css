@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+
+.color-event-primary {
+    color: #f6682F;
+}
+
+.color-event-secondary {
+    color: #007f8c;
+}
