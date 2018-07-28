@@ -1,0 +1,398 @@
+$birdColor: #11e7d7;
+$birdColor2: #31bfae;
+$birdColor3: #01c7be;
+$feetColor: #f8c14d;
+$beakColor: #f7d35d;
+$beakColor2: #eb9f2d;
+
+$birdColor3: #01c7be;
+
+$birdWidth: 250;
+$birdHeight: $birdWidth;
+
+// Storyboard Timeline
+$timeline: (
+ 'begin'         : 0s,
+ 'eye-p0-1'      : 0.4s,
+ 'eye-p1-1'		   : 0.4s,
+ 'eye-p4-1'      : 1.8s,
+ 'eye-p3-1'      : 0.4s,
+ 'eye-p4-2'      : 1s,
+ 'eye-p2-1'      : 0.1s,
+ 'end'           : 0.4s
+);
+
+
+// $totaltime:						Total of all timecodes in $timeline
+// $timelineAccumulated:	Accumulated timeline map based on $timeline
+$totaltime: 0s;
+$timelineAccumulated: ();
+@each $key, $time in $timeline {
+	$totaltime: $totaltime + $time;
+	$timelineAccumulated: map-merge($timelineAccumulated, ($key : $totaltime) );
+}
+
+// Timecode to Percent function
+// Params:
+// 	$key:			key/position in timeline
+// 	$offset:	optional offset to add to time from timeline (use negative number to subtract)
+// Return: 		Percentage value of keyposition in timeline.
+@function tp($key, $offset: 0s) {
+	@return (map-get($timelineAccumulated, $key) + $offset) / $totaltime * 100%;
+}
+
+
+@keyframes eyes {
+	#{tp('begin')},
+	#{tp('eye-p0-1')},
+  #{tp('end')} {
+   	top: -($birdWidth*12.5)/100+px;
+	}
+	#{tp('eye-p1-1')} {
+   	top: -($birdWidth*11.25)/100+px;
+	}
+	#{tp('eye-p2-1')} {
+   	top: -($birdWidth*5)/100+px;
+	}
+	#{tp('eye-p4-1')},
+	#{tp('eye-p4-2')} {
+   	top: -($birdWidth*3.75)/100+px;
+	}
+	#{tp('eye-p3-1')} {
+    top: -($birdWidth*6.25)/100+px;
+	}
+}
+@keyframes wings {
+	#{tp('begin')},
+	#{tp('eye-p4-2')},
+  #{tp('end')} {
+		top: ($birdWidth*17.5)/100+px;
+	}
+	#{tp('eye-p2-1')} {
+		top: ($birdWidth*15)/100+px;
+	}
+}
+
+@keyframes feet {
+	#{tp('begin')},
+	#{tp('eye-p4-2')},
+  #{tp('end')} {
+		top: -($birdWidth*0.5)/100+px;
+	}
+	#{tp('eye-p2-1')} {
+		top: 0px;
+	}
+}
+@keyframes cloud {
+	0% {
+		left: -($birdWidth*35)/100+px;
+	}
+	100% {
+		left: ($birdWidth*70)/100+px;
+	}
+}
+
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,500italic);
+
+html {
+	height: 100%;
+	background-color: rgba(34,32,36,1);
+	background: radial-gradient(circle at center, rgba(71,65,76,1) 0%,rgba(34,32,36,1) 100%);
+	background-repeat: no-repeat;
+}
+body {
+ text-align: center;
+ font: normal 100% 'Fira Sans', sans-serif;
+}
+h2 {
+	font-size: 4vw;
+	span {
+		font-size: 60%;
+	}
+}
+a {
+	color: #aaa;
+}
+
+
+
+.globe {
+	margin: 1em 0 0 0;
+	position: relative;
+	display: inline-block;
+	text-align: left;
+	width: $birdWidth+px;
+	height: $birdHeight+px;
+	border-radius: 50%;
+	border: ($birdWidth*5)/100+px solid #f6682F;
+	box-sizing: border-box;
+	background: linear-gradient(to bottom, rgba(134,174,204,1) 0%,rgba(212,228,239,1) 100%);
+	overflow: hidden;
+	box-shadow: inset 0 0 ($birdWidth*20)/100+px rgba(0,0,0,.5),
+										0 0 20px rgba(0,0,0,.3);
+	&:before, &:after {
+		position: absolute;
+		content: "";
+ 		box-sizing: border-box;
+		border-radius: 50%;
+		z-index: 10;
+	}
+	&:before {
+		height: 94%;
+		width: 94%;
+		top:3%;
+		right: 3%;
+		border: 10px solid transparent;
+		border-right-color: rgba(255,255,255,.3);
+		border-right-width: ($birdWidth*2.5)/100+px;
+		border-right-style: solid;
+
+	}
+	&:after {
+		top: ($birdWidth*12.5)/100+px;
+		right: ($birdWidth*16.25)/100+px;
+		width: ($birdWidth*2.5)/100+px;
+		height: ($birdWidth*2.5)/100+px;
+		background: rgba(255,255,255,.3);
+  }
+	.bird {
+		position: absolute;
+		z-index: 1;
+		left: ($birdWidth*24)/100+px;
+		top: ($birdWidth*25)/100+px;
+		.body {
+			position: absolute;
+			width: ($birdWidth*43.75)/100+px;
+			height: ($birdWidth*46.5)/100+px;
+			border-radius: 50%;
+			background-clip: padding-box;
+			background-color: $birdColor;
+			box-shadow: inset 0 0 ($birdWidth*20)/100+px rgba(0,0,0,.3);
+			&:before, &:after {
+				position: absolute;
+				content: "";
+				z-index: -1;
+				width: ($birdWidth*6.5)/100+px;
+				height: ($birdWidth*23.5)/100+px;
+				border-radius: 50%;
+				background-color: $birdColor;
+				box-shadow: inset 0 0 ($birdWidth*3.25)/100+px rgba(0,0,0,.3);
+				top: ($birdWidth*17.5)/100+px;
+				animation: wings $totaltime linear infinite;
+			}
+			&:before {
+				left: 0;
+			}
+			&:after {
+				right: 0;
+		  }
+			.eye {
+				position: absolute;
+				z-index: 1;
+				overflow: hidden;
+				width: ($birdWidth*14)/100+px;
+				height: ($birdWidth*14)/100+px;
+				top:($birdWidth*7)/100+px;
+				border-radius: 50%;
+				background-color: #fff;
+				border: 1px solid $birdColor3;
+				box-shadow: inset 0 0 0 1px $birdColor3;
+				&:before, &:after {
+					position: absolute;
+					content: "";
+				}
+				&:before {
+					width: ($birdWidth*4.5)/100+px;
+					height: ($birdWidth*4.5)/100+px;
+					border-radius: 50%;
+					background-color: #000;
+					top: ($birdWidth*7.5)/100+px;
+				}
+				&:after {
+					width: ($birdWidth*50)/100+px;
+					height: ($birdWidth*50)/100+px;
+					background: radial-gradient(ellipse at center,
+					rgba(109,0,25,0) 0%,
+					rgba(130,1,31,0) 35%,
+					$birdColor3 36%,
+					$birdColor2 100%);
+					animation: eyes $totaltime linear infinite;
+				}
+				&.left {
+					left: ($birdWidth*3.75)/100+px;
+					&:before {
+						left: ($birdWidth*5)/100+px;
+					}
+					&:after {
+		 				left: -($birdWidth*15)/100+px;
+		    			top: -($birdWidth*11.25)/100+px;
+					}
+				}
+				&.right {
+					right: ($birdWidth*3.75)/100+px;
+					&:before {
+						right: ($birdWidth*5)/100+px;
+					}
+					&:after {
+						left: -($birdWidth*15)/100+px;
+		    			top: -($birdWidth*11.25)/100+px;
+					}
+				}
+			}
+			.beak {
+				position: absolute;
+				z-index: 1;
+				width: ($birdWidth*10.25)/100+px;
+				height: ($birdWidth*13.75)/100+px;
+				top: ($birdWidth*17.5)/100+px;
+				left: ($birdWidth*16.75)/100+px;
+				border-radius: 50%;
+				background-color: $birdColor2;
+				&:before {
+						position: absolute;
+						content: "";
+						width: inherit;
+						height: inherit;
+						top: ($birdWidth*0.5)/100+px;
+						border-radius: 50%;
+						background: $beakColor2;
+				}
+				&:after {
+						position: absolute;
+						content: "";
+						z-index: -1;
+						width: ($birdWidth*9.25)/100+px;
+						height: inherit;
+						top: ($birdWidth*3)/100+px;
+						left: ($birdWidth*0.5)/100+px;
+						border-radius: 50%;
+						background: $birdColor2;
+				}
+				div {
+					position: absolute;
+					width: ($birdWidth*10.75)/100+px;
+					height: ($birdWidth*10.75)/100+px;
+					top: -($birdWidth*0.25)/100+px;
+					left: -($birdWidth*0.25)/100+px;
+					border-radius: 50% 60% 50%  40%;
+					background-clip: padding-box;
+					background-color: $beakColor;
+					transform: rotate(-45deg);
+					&:before {
+						position: absolute;
+						content: "";
+						transform: rotate(45deg);
+						width: ($birdWidth*4.25)/100+px;
+						height: ($birdWidth*2)/100+px;
+						top: ($birdWidth*2.5)/100+px;
+						left: ($birdWidth*5)/100+px;
+						border-radius: 50%;
+						background-color: #fff;
+					}
+				}
+			}
+			.feet {
+				position: absolute;
+				bottom: ($birdWidth*3.75)/100+px;
+				width: 100%;
+				&:before, &:after {
+					position: absolute;
+					content: "";
+					width: ($birdWidth*6.75)/100+px;
+					height: ($birdWidth*5.25)/100+px;
+					border-radius: 50%;
+					background-color: $feetColor;
+					box-shadow: inset 0 0 12px rgba(0,0,0,.2);
+					animation: feet $totaltime linear infinite;
+				}
+				&:before {
+					left: ($birdWidth*10)/100+px;
+				}
+				&:after {
+					right: ($birdWidth*10)/100+px;
+				}
+			}
+		}
+	}
+	.wire {
+		position: absolute;
+		z-index: -1;
+		width: ($birdWidth*125)/100+px;
+		height: ($birdWidth*100)/100+px;
+		left: -($birdWidth*43.25)/100+px;
+		top: -($birdWidth*53.75)/100+px;
+		border-radius: 50%;
+		border: ($birdWidth*0.75)/100+px solid transparent;
+		border-bottom-color: black;
+	}
+	.hills {
+		position: absolute;
+		width: ($birdWidth*15)/100+px;
+		height: ($birdWidth*15)/100+px;
+		border-radius: 30%;
+		top: ($birdWidth*57.5)/100+px;
+		left: ($birdWidth*15)/100+px;
+		transform: rotate(45deg);
+		background: radial-gradient(ellipse at top left, rgba(170,217,93,1) 0%,rgba(187,195,105,1) 100%);
+		box-shadow: inset ($birdWidth*1.25)/100+px 0 ($birdWidth*3)/100+px rgba(0,0,0,.2);
+		&:before, &:after {
+			position: absolute;
+			content: "";
+			width: ($birdWidth*44.5)/100+px;
+			height: ($birdWidth*22.5)/100+px;
+			border-radius: 50%;
+			background: inherit;
+			box-shadow: inherit;
+		}
+		&:before {
+			left: -($birdWidth*22.5)/100+px;
+			top: ($birdWidth*7.5)/100+px;
+			z-index: -1;
+			transform: rotate(-20deg);
+		}
+		&:after {
+			left: 0px;
+			top: -($birdWidth*13.75)/100+px;
+			transform: rotate(120deg);
+		}
+	}
+
+	.cloud {
+		position: absolute;
+		width: ($birdWidth*17.5)/100+px;
+		height: ($birdWidth*6)/100+px;
+		background: linear-gradient(to bottom,
+								rgba(242,249,254,1) 5%,
+								rgba(214,240,253,1) 100%);
+		border-radius: ($birdWidth*5)/100+px;
+		top:-($birdWidth*5)/100+px;
+		z-index: -1;
+		animation: cloud $totaltime*2 linear infinite;
+		&.small {
+			top:-($birdWidth*12.5)/100+px;
+			transform: scale(.6);
+			animation-delay: -$totaltime/3;
+			animation-duration: $totaltime*3;
+		}
+		&:before, &:after {
+			position: absolute;
+			content: "";
+			background: inherit;
+			z-index: -1;
+		}
+		&:before {
+			width: ($birdWidth*9)/100+px;
+			height: ($birdWidth*9)/100+px;
+			top: -($birdWidth*4.5)/100+px;
+			right: ($birdWidth*2.5)/100+px;
+			border-radius: ($birdWidth*10)/100+px;
+		}
+		&:after {
+			width: ($birdWidth*5)/100+px;
+			height: ($birdWidth*5)/100+px;
+			top: -($birdWidth*2.5)/100+px;
+			left: ($birdWidth*2.5)/100+px;
+			border-radius: ($birdWidth*5)/100+px;
+		}
+	}
+}

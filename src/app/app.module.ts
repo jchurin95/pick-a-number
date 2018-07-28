@@ -8,6 +8,7 @@ import { InteractiveComponent } from './components/container/interactive/interac
 import { PcPickComponent } from './components/container/interactive/pc-pick/pc-pick.component';
 import { UserPickComponent } from './components/container/interactive/user-pick/user-pick.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { DozingBirdComponent } from './components/container/layout/dozing-bird/dozing-bird.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     PcPickComponent,
     UserPickComponent,
     SpinnerComponent,
+    DozingBirdComponent,
   ],
   imports: [
     BrowserModule
