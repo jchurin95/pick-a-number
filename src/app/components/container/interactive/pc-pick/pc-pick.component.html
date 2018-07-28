@@ -1,0 +1,24 @@
+<div class="card" [ngClass]="{'disabled-card': !enabled}">
+    <div class="card-body">
+        <div *ngIf="enabled">
+            <div class="row">
+                <span class="badge badge-success">56</span>
+            </div>
+            <div class="row">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary">-</button>
+                    <button type="button" class="btn btn-secondary">:D</button>
+                    <button type="button" class="btn btn-secondary">+</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Cantidad de intentos: 4
+                </div>
+                <div class="col">
+                    <app-spinner [enable]="enableSpinner"></app-spinner>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

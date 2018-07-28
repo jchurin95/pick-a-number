@@ -1,0 +1,12 @@
+.card {
+    min-height: 230px;
+}
+
+.disabled-card {
+    background-color: gray;
+}
+
+.badge {
+    min-width: 200px;
+    font-size: 50px;
+}

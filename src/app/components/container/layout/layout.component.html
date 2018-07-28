@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        Gracias por jugar en pickanumer.com! Empecemos!!
+      </div>
+    </div>
+    <div class="row justify-content-end">
+      <div class="col-3">
+        <button type="button" class="btn btn-success" (click)="init()" *ngIf="!gaming">Iniciar</button>
+        <button type="button" class="btn btn-danger" (click)="finish()" *ngIf="gaming">Finalizar</button>
+      </div>
+    </div>
+  </div>
+</div>

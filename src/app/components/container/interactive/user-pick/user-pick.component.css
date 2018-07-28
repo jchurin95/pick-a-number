@@ -1,0 +1,6 @@
+.card {
+    min-height: 230px;
+}
+.disabled-card {
+    background-color: gray;
+}
