@@ -1,19 +1,38 @@
 <div class="card">
   <div class="card-body">
     <div class="row">
-      <div class="col">
-        Gracias por jugar en pickanumer.com! Empecemos!!
+      <div class="col-4">
+        <div class="row justify-content-center">
+          <div class="col-6 text-center">
+            <span>
+              {{message}}
+            </span>
+            <app-dozing-bird></app-dozing-bird>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <app-dozing-bird></app-dozing-bird>
-      </div>
-    </div>
-    <div class="row justify-content-end">
-      <div class="col-3">
-        <button type="button" class="btn btn-success" (click)="init()" *ngIf="!gaming">Iniciar</button>
-        <button type="button" class="btn btn-danger" (click)="finish()" *ngIf="gaming">Finalizar</button>
+      <div class="col-8">
+        <div class="card">
+          <div class="card-body">
+            <span *ngIf="!playing">
+              <div class="custom-control custom-radio custom-control-inline" (change)="gameSelected(1)">
+                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline1">You pick the number</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline" (change)="gameSelected(2)">
+                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline2">PC pick the number</label>
+              </div>
+              <br>
+              <br>
+              <button type="button" class="btn btn-primary btn-lg btn-block" (click)="initGame()" [disabled]="!firstGame && !secondGame">Start</button>
+            </span>
+            <span *ngIf="playing">
+              <app-pc-pick *ngIf="firstGame"></app-pc-pick>
+              <app-user-pick *ngIf="secondGame"></app-user-pick>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

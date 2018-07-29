@@ -1,5 +1,5 @@
 .card {
-    min-height: 230px;
+    min-height: 200px;
 }
 .disabled-card {
     background-color: gray;

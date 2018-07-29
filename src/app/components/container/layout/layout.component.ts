@@ -1,4 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { MessagesService } from '../../../services/messages.service';
+import { Message } from '../../../models/message.models';
+import { JSON_MESSAGES } from '../../../constants/message.constants';
 
 @Component({
   selector: 'app-layout',
@@ -7,26 +10,42 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  @Output() initGame = new EventEmitter();
-  gaming: boolean = false;
+  message: string = "";
+  playing: boolean = false;
+  firstGame: boolean = false;
+  secondGame: boolean = false;
 
-  constructor() { }
+  constructor(
+    private _messagesService: MessagesService
+  ) { }
 
   ngOnInit() {
+    this.getWelcomeMessage();
   }
 
-  init() {
-    this.changeStatusGame();
-    this.initGame.next(this.gaming);
+  initGame() {
+    this.playing = true;
   }
-  
-  finish() {
-    this.changeStatusGame();
-    this.initGame.next(this.gaming);
+
+  gameSelected(gameSelected: number) {
+    this.firstGame = (gameSelected === 1);
+    this.secondGame = !this.firstGame;
+    let pathToJson = (gameSelected === 1) ? JSON_MESSAGES.USER_PICKS : JSON_MESSAGES.PC_PICKS;
+    this.getSelectedGameMessage(pathToJson);
   }
-  
-  private changeStatusGame() {
-    this.gaming = !this.gaming;
+
+  private getWelcomeMessage() {
+    this._messagesService.getMessageByPath(JSON_MESSAGES.WELCOME)
+    .subscribe((response: Message) => {
+      this.message = response.description;
+    });
+  }
+
+  private getSelectedGameMessage(pathToJson: string) {
+    this._messagesService.getMessageByPath(pathToJson)
+    .subscribe((response: Message) => {
+      this.message = response.description;
+    })
   }
 
 }

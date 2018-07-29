@@ -7,8 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class UserPickComponent implements OnInit {
 
-  @Input() enabled: boolean;
-
   constructor() { }
 
   ngOnInit() {

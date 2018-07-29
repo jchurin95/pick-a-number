@@ -7,9 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PcPickComponent implements OnInit {
 
-  @Input() enabled: boolean;
-  enableSpinner: boolean = true;
-
   constructor() { }
 
   ngOnInit() {

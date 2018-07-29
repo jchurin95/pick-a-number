@@ -1,5 +1,5 @@
 .card {
-    min-height: 230px;
+    min-height: 200px;
 }
 
 .disabled-card {
@@ -9,4 +9,10 @@
 .badge {
     min-width: 200px;
     font-size: 50px;
+}
+
+.attemps-legend {
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }

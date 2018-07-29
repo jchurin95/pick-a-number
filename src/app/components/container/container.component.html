@@ -1,14 +1,14 @@
 <div class="row justify-content-md-center">
-  <div class="col-8">
-    <h1>Bienvenido a
+  <div class="col">
+    <h1 class="text-center">Welcome to
       <span class="color-event-primary">pickanumber</span>
       <span class="color-event-secondary">.com</span> !</h1>
   </div>
 </div>
 <div class="row">
-  <div class="col-6"><app-layout (initGame)="initOrFinishGame($event)"></app-layout></div>
-  <div class="col-6"><app-interactive 
+  <div class="col"><app-layout (initGame)="initOrFinishGame($event)"></app-layout></div>
+  <!-- <div class="col-6"><app-interactive 
     [initializedGame]="initializedGame" 
     [firstPanelEnabled]="firstPanelEnabled" 
-    [secondPanelEnabled]="secondPanelEnabled"></app-interactive></div>
+    [secondPanelEnabled]="secondPanelEnabled"></app-interactive></div> -->
 </div>
