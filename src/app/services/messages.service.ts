@@ -14,15 +14,6 @@ export class MessagesService {
     private _http: HttpClient
   ) { }
 
-  // getWelcomeMessage() {
-  //   return this._http.get('assets/messages/welcome.json')
-  //   .pipe(
-  //     map((response: Message[]) => {
-  //       return this.mappingResponseMessages(response);
-  //     }) 
-  //   );
-  // }
-
   getMessageByPath(pathToJson: string) {
     return this._http.get('assets/messages/' + pathToJson + '.json')
     .pipe(

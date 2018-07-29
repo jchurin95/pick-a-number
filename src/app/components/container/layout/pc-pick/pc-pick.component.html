@@ -1,18 +1,13 @@
 <div>
-    <div class="row justify-content-end align-items-start">
-        <div class="col-2">
-            <app-spinner [enable]="enableSpinner"></app-spinner>
-        </div>
-    </div>
     <div class="row justify-content-center">
         <div class="col-4">
             <div class="row">
                 <span class="badge badge-success">
-                    <span>?</span>
+                    <span>{{pickANumber.currentNumber}}</span>
                     <div class="btn-group float-right" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-primary">Lower</button>
-                        <button type="button" class="btn btn-primary">YES!</button>
-                        <button type="button" class="btn btn-primary">Higher</button>
+                        <button type="button" class="btn btn-primary" (click)="isLower()" [disabled]="pickANumber.finished">Smaller</button>
+                        <button type="button" class="btn btn-primary" (click)="isCorrect()" [disabled]="pickANumber.finished">YES!</button>
+                        <button type="button" class="btn btn-primary" (click)="isHigher()" [disabled]="pickANumber.finished">Bigger</button>
                     </div>
                 </span>
             </div>
@@ -20,8 +15,8 @@
     </div>
     <div class="row row justify-content-end align-items-end">
         <div class="col-5 attemps-legend">
-            Cantidad de intentos:
-            <span>4</span>
+            Number of attempts:
+            <span>{{pickANumber.attempts}}</span>
         </div>
     </div>
 </div>

@@ -30,7 +30,7 @@ export class LayoutComponent implements OnInit {
   gameSelected(gameSelected: number) {
     this.firstGame = (gameSelected === 1);
     this.secondGame = !this.firstGame;
-    let pathToJson = (gameSelected === 1) ? JSON_MESSAGES.USER_PICKS : JSON_MESSAGES.PC_PICKS;
+    let pathToJson = (gameSelected === 1) ? JSON_MESSAGES.SELECT_FIRST_GAME : JSON_MESSAGES.SELECT_SECOND_GAME;
     this.getSelectedGameMessage(pathToJson);
   }
 
@@ -46,6 +46,10 @@ export class LayoutComponent implements OnInit {
     .subscribe((response: Message) => {
       this.message = response.description;
     })
+  }
+
+  changeMessage($event) {
+    this.message = $event.description;
   }
 
 }

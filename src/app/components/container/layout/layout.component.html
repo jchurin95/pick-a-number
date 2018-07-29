@@ -28,7 +28,7 @@
               <button type="button" class="btn btn-primary btn-lg btn-block" (click)="initGame()" [disabled]="!firstGame && !secondGame">Start</button>
             </span>
             <span *ngIf="playing">
-              <app-pc-pick *ngIf="firstGame"></app-pc-pick>
+              <app-pc-pick *ngIf="firstGame" (changeMessage)="changeMessage($event)"></app-pc-pick>
               <app-user-pick *ngIf="secondGame"></app-user-pick>
             </span>
           </div>
