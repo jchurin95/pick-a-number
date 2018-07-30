@@ -52,4 +52,9 @@ export class LayoutComponent implements OnInit {
     this.message = $event.description;
   }
 
+  restartGames() {
+    this.playing = false;
+    this.getWelcomeMessage();
+  }
+
 }

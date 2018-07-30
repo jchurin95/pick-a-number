@@ -15,8 +15,15 @@ export class PickANumber {
         this.end = 100;
         this.attempts = 0;
         this.finished = false;
-        this.process();
     };
+
+    initFirstGame() {
+        this.process();
+    }
+
+    initSecondGame() {
+        this.setRandomNumber();
+    }
 
     process() {
         this.lastNumber = this.currentNumber;
@@ -39,5 +46,9 @@ export class PickANumber {
         this.correctNumber = this.currentNumber;
         this.finished = true;
     };
+
+    setRandomNumber() {
+        this.correctNumber = Math.floor((Math.random() * this.end) + this.start);
+    }
 
 }

@@ -1,7 +1,9 @@
 export const JSON_MESSAGES = {
     WELCOME: 'welcome',
-    SELECT_FIRST_GAME: 'select-first-game',
-    SELECT_SECOND_GAME: 'select-second-game',
-    PROCESSING_FIRST_GAME: 'processing-first-game',
-    FINISHED_FIRST_GAME: 'finished-first-game',
+    FINISHED_FIRST_GAME: 'first-game/finished',
+    PROCESSING_FIRST_GAME: 'first-game/processing',
+    SELECT_FIRST_GAME: 'first-game/select',
+    FINISHED_SECOND_GAME: 'second-game/finished',
+    PROCESSING_SECOND_GAME: 'second-game/processing',
+    SELECT_SECOND_GAME: 'second-game/select',
 }

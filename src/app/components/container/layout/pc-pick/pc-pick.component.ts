@@ -19,6 +19,7 @@ export class PcPickComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.pickANumber.initFirstGame();
     this.getProcessingOrFinishedMessage();
   }
 
@@ -26,6 +27,7 @@ export class PcPickComponent implements OnInit {
     this.pickANumber.isLower();
     if (this.pickANumber.finished) {
       this.finished();
+      return;
     }
     this.getProcessingOrFinishedMessage();
   }
@@ -56,6 +58,12 @@ export class PcPickComponent implements OnInit {
 
   private finished() {
     this.getProcessingOrFinishedMessage();
+  }
+  
+  restartGame() {
+    this.getProcessingOrFinishedMessage();
+    this.pickANumber = new PickANumber();
+    this.pickANumber.initFirstGame();
   }
 
 }

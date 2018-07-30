@@ -1,6 +1,5 @@
-.card {
-    min-height: 200px;
-}
-.disabled-card {
-    background-color: gray;
+.attemps-legend {
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }

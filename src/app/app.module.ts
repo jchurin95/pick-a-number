@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ContainerComponent } from './components/container/container.component';
@@ -8,8 +11,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { DozingBirdComponent } from './components/container/layout/dozing-bird/dozing-bird.component';
 import { PcPickComponent } from './components/container/layout/pc-pick/pc-pick.component';
 import { UserPickComponent } from './components/container/layout/user-pick/user-pick.component';
+
 import { MessagesService } from './services/messages.service';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    AngularFontAwesomeModule
   ],
   providers: [
     MessagesService

@@ -10,6 +10,11 @@
             <app-dozing-bird></app-dozing-bird>
           </div>
         </div>
+        <div class="row">
+          <button type="button" class="btn btn-light" (click)="restartGames()">
+            <i class="material-icons">autorenew</i>
+          </button>
+        </div>
       </div>
       <div class="col-8">
         <div class="card">
@@ -29,7 +34,7 @@
             </span>
             <span *ngIf="playing">
               <app-pc-pick *ngIf="firstGame" (changeMessage)="changeMessage($event)"></app-pc-pick>
-              <app-user-pick *ngIf="secondGame"></app-user-pick>
+              <app-user-pick *ngIf="secondGame" (changeMessage)="changeMessage($event)"></app-user-pick>
             </span>
           </div>
         </div>
