@@ -21,7 +21,7 @@ export class UserPickComponent implements OnInit {
 
   ngOnInit() {
     this.pickANumber.initSecondGame();
-    this.getProcessingOrFinishedMessage();
+    // this.getProcessingOrFinishedMessage();
   }
   
   guessNumber() {
@@ -54,9 +54,18 @@ export class UserPickComponent implements OnInit {
       this.changeMessage.next(response);
     });
   }
+
+  private getStartMessage() {
+    // const pathToJson = (this.pickANumber.finished) ? JSON_MESSAGES.FINISHED_SECOND_GAME : JSON_MESSAGES.PROCESSING_SECOND_GAME;
+    this._messagesService.getMessageByPath(JSON_MESSAGES.SELECT_SECOND_GAME)
+    .subscribe((response: Message) => {
+      this.changeMessage.next(response);
+    });
+  }
   
   restartGame() {
-    this.getProcessingOrFinishedMessage();
+    // this.getProcessingOrFinishedMessage();
+    this.getStartMessage();
     this.pickANumber = new PickANumber();
     this.pickANumber.initSecondGame();
     this.guessedNumber = null;

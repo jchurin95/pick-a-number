@@ -1,7 +1,7 @@
 [
-    { "description": "MENSAJE DE PROCESSING 1" },
-    { "description": "MENSAJE DE PROCESSING 2" },
-    { "description": "MENSAJE DE PROCESSING 3" },
-    { "description": "MENSAJE DE PROCESSING 4" },
-    { "description": "MENSAJE DE PROCESSING 5" }
+    { "description": "Nope, that's not the number, try again!" },
+    { "description": "Pick a number, maybe you guess it this time..." },
+    { "description": "This is a difficult one, try again!" },
+    { "description": "No! You failed again, perhaps the next time's the charm..." },
+    { "description": "Try again, you're so close!!" }
 ]

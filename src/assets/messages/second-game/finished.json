@@ -1,7 +1,7 @@
 [
-    { "description": "MENSAJE DE FINISHED 1" },
-    { "description": "MENSAJE DE FINISHED 2" },
-    { "description": "MENSAJE DE FINISHED 3" },
-    { "description": "MENSAJE DE FINISHED 4" },
-    { "description": "MENSAJE DE FINISHED 5" }
+    { "description": "You won! Congratulations!!" },
+    { "description": "I knew you where a good opponent, congratulations!" },
+    { "description": "Yeah! You did it! Congratulations!" },
+    { "description": "Awesome! You did it! Congratulations!" },
+    { "description": "That was amazing! You won! Congratulations!!!" }
 ]
