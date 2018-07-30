@@ -1,44 +1,61 @@
 <div class="card">
   <div class="card-body">
+
     <div class="row">
       <div class="col-4">
-        <div class="row justify-content-center">
-          <div class="col-6 text-center">
-            <span>
-              {{message}}
-            </span>
-            <app-dozing-bird></app-dozing-bird>
-          </div>
-        </div>
-        <div class="row">
-          <button type="button" class="btn btn-light" (click)="restartGames()">
-            <i class="material-icons">autorenew</i>
-          </button>
-        </div>
+        <app-dozing-bird></app-dozing-bird>
       </div>
       <div class="col-8">
-        <div class="card">
-          <div class="card-body">
-            <span *ngIf="!playing">
-              <div class="custom-control custom-radio custom-control-inline" (change)="gameSelected(1)">
-                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-                <label class="custom-control-label" for="customRadioInline1">You pick the number</label>
+        <div class="row">
+          <div class="col-12" style="min-height: 50px;">
+            <span>{{message}}</span>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <span *ngIf="!playing">
+
+                  <div class="row">
+                    <div class="col-4">
+                      <div class="custom-control custom-radio" (change)="gameSelected(1)">
+                        <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline1">You pick the number</label>
+                      </div>
+                      <div class="custom-control custom-radio" (change)="gameSelected(2)">
+                        <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline2">PC pick the number</label>
+                      </div>
+                    </div>
+                    <div class="col-8">
+                      <button type="button" class="btn btn-primary btn-lg btn-block event-btn-primary" (click)="initGame()" [disabled]="!firstGame && !secondGame">Start</button>
+                    </div>
+                  </div>
+
+                </span>
+                <span *ngIf="playing">
+                  <app-pc-pick *ngIf="firstGame" (changeMessage)="changeMessage($event)"></app-pc-pick>
+                  <app-user-pick *ngIf="secondGame" (changeMessage)="changeMessage($event)"></app-user-pick>
+                </span>
               </div>
-              <div class="custom-control custom-radio custom-control-inline" (change)="gameSelected(2)">
-                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-                <label class="custom-control-label" for="customRadioInline2">PC pick the number</label>
-              </div>
-              <br>
-              <br>
-              <button type="button" class="btn btn-primary btn-lg btn-block" (click)="initGame()" [disabled]="!firstGame && !secondGame">Start</button>
-            </span>
-            <span *ngIf="playing">
-              <app-pc-pick *ngIf="firstGame" (changeMessage)="changeMessage($event)"></app-pc-pick>
-              <app-user-pick *ngIf="secondGame" (changeMessage)="changeMessage($event)"></app-user-pick>
-            </span>
+            </div>
+
+          </div>
+        </div>
+        <br>
+        <div class="row align-items-end">
+          <div class="col text-right">
+            <button type="button" class="btn btn-light event-btn-secondary" (click)="restartGames()">
+              <i class="material-icons">autorenew</i>
+            </button>
           </div>
         </div>
       </div>
     </div>
+
+
+
   </div>
 </div>

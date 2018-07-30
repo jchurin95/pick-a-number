@@ -1,21 +1,19 @@
 <div class="row">
-    <div class="col">
-        <form class="form-inline">
-            <div class="form-group mx-sm-3 mb-2">
-                <label>Pick a number between {{pickANumber.start}} and {{pickANumber.end}}&nbsp;</label>
-                <input type="number" class="form-control" [(ngModel)]="guessedNumber" name="guessedNumber" placeholder="Pick a number" (change)="validateInput(this)">
-            </div>
-            <button type="submit" class="btn btn-primary mb-2" (click)="guessNumber()" [disabled]="pickANumber.finished">Is it?</button>
-        </form>
-    </div>
+    <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2">
+            <label>Pick a number between {{pickANumber.start}} and {{pickANumber.end}}&nbsp;</label>
+            <input type="number" class="form-control" [(ngModel)]="guessedNumber" name="guessedNumber" placeholder="Pick a number" (change)="validateInput(this)">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2 event-btn-primary" (click)="guessNumber()" [disabled]="pickANumber.finished || !guessedNumber">Is it?</button>
+    </form>
 </div>
-<div class="row row justify-content-end align-items-end">
-    <div class="col-5 attemps-legend">
+<div class="row row justify-content-between align-items-end">
+    <div class="col-5">
         Number of attempts:
         <span>{{pickANumber.attempts}}</span>
     </div>
-    <div class="col-2">
-        <button type="button" class="btn btn-light" (click)="restartGame()">
+    <div class="col-2 text-right">
+        <button type="button" class="btn btn-light event-btn-secondary" (click)="restartGame()">
             <i class="material-icons">autorenew</i>
         </button>
     </div>

@@ -9,3 +9,36 @@
 .color-event-secondary {
     color: #007f8c;
 }
+
+.event-btn-primary {
+    background-color: #007f8c;
+    border-color: #006F7B;
+    color: white;
+}
+.event-btn-primary:hover{
+    background-color: #208F9A;
+    border-color: #006F7B;
+    color: white;
+}
+
+.event-btn-primary:disabled {
+    background-color: #409FA9;
+    color: black;
+    border-color: black;
+}
+
+.event-btn-secondary {
+    background-color: #f6682F;
+    border-color: #D75B29;
+    color: white;
+}
+.event-btn-secondary:hover {
+    background-color: #F77B49;
+    border-color: #D75B29;
+    color: white;
+}
+.event-btn-secondary:disabled {
+    background-color: #F88E63;
+    color: black;
+    border-color: black;
+}
