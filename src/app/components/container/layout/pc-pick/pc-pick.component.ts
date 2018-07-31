@@ -12,6 +12,7 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 export class PcPickComponent implements OnInit {
 
   @Output() changeMessage = new EventEmitter();
+  @Output() wonTheGame = new EventEmitter();
   pickANumber: PickANumber = new PickANumber();
 
   constructor(
@@ -57,6 +58,7 @@ export class PcPickComponent implements OnInit {
   }
 
   private finished() {
+    this.wonTheGame.next();
     this.getProcessingOrFinishedMessage();
   }
   

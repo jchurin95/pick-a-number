@@ -15,12 +15,12 @@ export class LayoutComponent implements OnInit {
   firstGame: boolean = false;
   secondGame: boolean = false;
 
-  constructor(
-    private _messagesService: MessagesService
-  ) { }
+  @Output() wonTheGame = new EventEmitter();
+
+  constructor(private _messagesService: MessagesService) { }
 
   ngOnInit() {
-    this.getWelcomeMessage();
+    this.getMessageByPath(JSON_MESSAGES.WELCOME);
   }
 
   initGame() {
@@ -31,17 +31,10 @@ export class LayoutComponent implements OnInit {
     this.firstGame = (gameSelected === 1);
     this.secondGame = !this.firstGame;
     let pathToJson = (gameSelected === 1) ? JSON_MESSAGES.SELECT_FIRST_GAME : JSON_MESSAGES.SELECT_SECOND_GAME;
-    this.getSelectedGameMessage(pathToJson);
+    this.getMessageByPath(pathToJson);
   }
 
-  private getWelcomeMessage() {
-    this._messagesService.getMessageByPath(JSON_MESSAGES.WELCOME)
-    .subscribe((response: Message) => {
-      this.message = response.description;
-    });
-  }
-
-  private getSelectedGameMessage(pathToJson: string) {
+  private getMessageByPath(pathToJson: string) {
     this._messagesService.getMessageByPath(pathToJson)
     .subscribe((response: Message) => {
       this.message = response.description;
@@ -54,7 +47,13 @@ export class LayoutComponent implements OnInit {
 
   restartGames() {
     this.playing = false;
-    this.getWelcomeMessage();
+    this.firstGame = false;
+    this.secondGame = false;
+    this.getMessageByPath(JSON_MESSAGES.WELCOME);
+  }
+
+  wonTheGames() {
+    this.wonTheGame.next();
   }
 
 }

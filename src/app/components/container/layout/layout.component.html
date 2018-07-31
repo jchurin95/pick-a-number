@@ -36,8 +36,8 @@
 
                 </span>
                 <span *ngIf="playing">
-                  <app-pc-pick *ngIf="firstGame" (changeMessage)="changeMessage($event)"></app-pc-pick>
-                  <app-user-pick *ngIf="secondGame" (changeMessage)="changeMessage($event)"></app-user-pick>
+                  <app-pc-pick *ngIf="firstGame" (wonTheGame)="wonTheGames()" (changeMessage)="changeMessage($event)"></app-pc-pick>
+                  <app-user-pick *ngIf="secondGame" (wonTheGame)="wonTheGames()" (changeMessage)="changeMessage($event)"></app-user-pick>
                 </span>
               </div>
             </div>

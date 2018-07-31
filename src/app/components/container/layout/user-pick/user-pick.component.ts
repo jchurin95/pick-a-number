@@ -12,6 +12,7 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 export class UserPickComponent implements OnInit {
 
   @Output() changeMessage = new EventEmitter();
+  @Output() wonTheGame = new EventEmitter();
   pickANumber: PickANumber = new PickANumber();
   guessedNumber: number;
 
@@ -42,6 +43,7 @@ export class UserPickComponent implements OnInit {
   isCorrect(){
     this.pickANumber.attempts++;
     this.pickANumber.isCorrect();
+    this.wonTheGame.next();
   }
   isHigher(){
     this.pickANumber.isHigher();
