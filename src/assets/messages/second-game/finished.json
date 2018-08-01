@@ -1,7 +1,7 @@
 [
-    { "description": "You won! Congratulations!!" },
-    { "description": "I knew you where a good opponent, congratulations!" },
-    { "description": "Yeah! You did it! Congratulations!" },
-    { "description": "Awesome! You did it! Congratulations!" },
-    { "description": "That was amazing! You won! Congratulations!!!" }
+    { "description": "You won! <span class='text-event-primary'>Congratulations</span>!!" },
+    { "description": "I knew you where a good opponent, <span class='text-event-primary'>congratulations</span>!" },
+    { "description": "Yeah! You did it! <span class='text-event-primary'>Congratulations</span>!" },
+    { "description": "Awesome! You did it! <span class='text-event-primary'>Congratulations</span>!" },
+    { "description": "That was amazing! You won! <span class='text-event-primary'>Congratulations</span>!!!" }
 ]

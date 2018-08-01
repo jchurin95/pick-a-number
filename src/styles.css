@@ -42,3 +42,13 @@
     color: black;
     border-color: black;
 }
+
+.text-event-primary {
+    /* font-size: 25px; */
+    font-weight: bold;
+    color: #f6682F;
+}
+
+.text-event-secondary {
+    color: #007f8c;
+}

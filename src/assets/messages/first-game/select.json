@@ -1,4 +1,4 @@
 [
-    { "description": "Are you sure? Ok, so pik a number between 1 and 100, and I'll guess it! I'll surprise you!" },
-    { "description": "Do you feel with lucky? Do you think better than me? I'll bit you! Choose a number between 1 and 100, and I'll guess it!" }
+    { "description": "Are you sure? Ok, so pick a number between <span class='text-event-primary'>1</span> and <span class='text-event-primary'>100</span>, and I'll guess it! I'll surprise you!" },
+    { "description": "Do you feel with lucky? Do you think yourself better than me? Choose a number between <span class='text-event-primary'>1</span> and <span class='text-event-primary'>100</span>, and I'll guess it!" }
 ]

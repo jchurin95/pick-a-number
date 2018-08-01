@@ -1,6 +1,6 @@
 [
-    { "description": "I won! Told you!!" },
-    { "description": "Yes! I'm the best! I won!!" },
-    { "description": "Congratulations for me! I guess it and without many attempts!" },
+    { "description": "I <span class='text-event-primary'>won</span>! Told you!!" },
+    { "description": "Yes! I'm the best! I <span class='text-event-primary'>won</span>!!" },
+    { "description": "Congratulations to me, I guessed it and without many attempts!" },
     { "description": "I knew I where the best, it's not a new for me!" }
 ]

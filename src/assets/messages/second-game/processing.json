@@ -2,6 +2,6 @@
     { "description": "Nope, that's not the number, try again!" },
     { "description": "Pick a number, maybe you guess it this time..." },
     { "description": "This is a difficult one, try again!" },
-    { "description": "No! You failed again, perhaps the next time's the charm..." },
+    { "description": "No! You failed again, perhaps the next time..." },
     { "description": "Try again, you're so close!!" }
 ]
