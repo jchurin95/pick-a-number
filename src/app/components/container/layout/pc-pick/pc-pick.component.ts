@@ -3,13 +3,14 @@ import { PickANumber } from '../../../../models/pick-a-number.models';
 import { MessagesService } from '../../../../services/messages.service';
 import { JSON_MESSAGES } from '../../../../constants/message.constants';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { GamePick } from '../../../../models/game-pick-interface.models';
 
 @Component({
   selector: 'app-pc-pick',
   templateUrl: './pc-pick.component.html',
   styleUrls: ['./pc-pick.component.css']
 })
-export class PcPickComponent implements OnInit {
+export class PcPickComponent implements OnInit, GamePick {
 
   @Output() changeMessage = new EventEmitter();
   @Output() wonTheGame = new EventEmitter();
@@ -24,48 +25,38 @@ export class PcPickComponent implements OnInit {
     this.getProcessingOrFinishedMessage();
   }
 
-  isLower(){
+  isLower(): void {
     this.pickANumber.isLower();
-    if (this.pickANumber.finished) {
-      this.finished();
-      return;
-    }
-    this.getProcessingOrFinishedMessage();
+    if (!this.finished()) { this.getProcessingOrFinishedMessage(); }
   }
-  isCorrect(){
+  isCorrect(): void {
     this.pickANumber.isCorrect()
-    if (this.pickANumber.finished) {
-      this.finished();
-      return;
-    }
-    this.getProcessingOrFinishedMessage();
+    if (!this.finished()) { this.getProcessingOrFinishedMessage(); }
   }
-  isHigher(){
+  isHigher(): void {
     this.pickANumber.isHigher();
-    if (this.pickANumber.finished) {
-      this.finished();
-      return;
-    }
-    this.getProcessingOrFinishedMessage();
+    if (!this.finished()) { this.getProcessingOrFinishedMessage(); }
   }
-  
-  private getProcessingOrFinishedMessage() {
-    const pathToJson = (this.pickANumber.finished) ? JSON_MESSAGES.FINISHED_FIRST_GAME : JSON_MESSAGES.PROCESSING_FIRST_GAME;
-    this._messagesService.getMessageByPath(pathToJson)
-    .subscribe((response: Message) => {
-      this.changeMessage.next(response);
-    });
-  }
-
-  private finished() {
-    this.wonTheGame.next();
-    this.getProcessingOrFinishedMessage();
-  }
-  
-  restartGame() {
+  restartGame(): void {
     this.getProcessingOrFinishedMessage();
     this.pickANumber = new PickANumber();
     this.pickANumber.initFirstGame();
+  }
+
+  private getProcessingOrFinishedMessage() {
+    const pathToJson = (this.pickANumber.finished) ? JSON_MESSAGES.FINISHED_FIRST_GAME : JSON_MESSAGES.PROCESSING_FIRST_GAME;
+    this._messagesService.getMessageByPath(pathToJson)
+      .subscribe((response: Message) => {
+        this.changeMessage.next(response);
+      });
+  }
+
+  private finished() {
+    if (this.pickANumber.finished) {
+      this.wonTheGame.next();
+      this.getProcessingOrFinishedMessage();
+    }
+    return this.pickANumber.finished;
   }
 
 }

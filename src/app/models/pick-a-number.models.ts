@@ -9,7 +9,8 @@ export class PickANumber {
     correctNumber: number;
 
     finished: boolean;
-    
+    isFirstGame: boolean;
+
     constructor(){
         this.start = 1;
         this.end = 100;
@@ -18,28 +19,30 @@ export class PickANumber {
     };
 
     initFirstGame() {
+        this.isFirstGame = true;
         this.process();
     }
-
+    
     initSecondGame() {
+        this.isFirstGame = false;
         this.setRandomNumber();
     }
 
     process() {
         this.lastNumber = this.currentNumber;
-        if (Math.trunc((this.end - this.start) / 2) === 0) {
+        this.currentNumber = Math.trunc(this.start + ((this.end - this.start) / 2));
+        this.attempts++;
+        if (this.attempts === 7 && this.isFirstGame) { // Max numbers of attempts
             this.finished = true;
             return;
         }
-        this.currentNumber = Math.trunc(this.start + ((this.end - this.start) / 2));
-        this.attempts++;
     }
     isLower() {
-        this.end = this.currentNumber;
+        this.end = (this.currentNumber === 1) ? this.currentNumber : this.currentNumber - 1;
         this.process();
     };
     isHigher() {
-        this.start = this.currentNumber;
+        this.start = (this.currentNumber === 100) ? this.currentNumber : this.currentNumber + 1;
         this.process();
     };
     isCorrect() {

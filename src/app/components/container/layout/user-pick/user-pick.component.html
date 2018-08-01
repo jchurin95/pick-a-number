@@ -1,7 +1,10 @@
 <div class="row">
+    <!-- <pre>
+        {{pickANumber | json}}
+    </pre> -->
     <form class="form-inline">
         <div class="form-group mx-sm-3 mb-2">
-            <label>Pick a number between {{pickANumber.start}} and {{pickANumber.end}}&nbsp;</label>
+            <label>Pick a number from {{pickANumber.start}} to {{pickANumber.end}}&nbsp;</label>
             <input type="number" class="form-control" [(ngModel)]="guessedNumber" name="guessedNumber" placeholder="Pick a number" (change)="validateInput(this)">
         </div>
         <button type="submit" class="btn btn-primary mb-2 event-btn-primary" (click)="guessNumber()" [disabled]="pickANumber.finished || !guessedNumber">Is it?</button>
